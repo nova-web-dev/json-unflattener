@@ -1,4 +1,4 @@
-JSON Un-flatteneder
+JSON Un-flattener
 ===================
 
 This is a simple recursive script to take a flattened JSON and 
