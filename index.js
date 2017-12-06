@@ -3,8 +3,11 @@ const fs = require('fs');
 
 const {data} = require('./data.js');
 const sortedItems = _.sortBy(data, "Id");
+const nestedItems = unflatten(sortedItems);
 
-unflatten(sortedItems);
+fs.writeFile("results.json", JSON.stringify(nestedItems, null, 4), (error) => {
+    console.log("wrote file!")
+});
 
 function unflatten(input) {
     const finalItems = [];
@@ -18,9 +21,7 @@ function unflatten(input) {
         findAllChildren(item, input);
     }
 
-    fs.writeFile("results.json", JSON.stringify(finalItems, null, 4), (error) => {
-        console.log("wrote file!")
-    });
+    return finalItems;
 }
 
 function findAllChildren(item, flatArray) {
